@@ -1,0 +1,562 @@
+.upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: calc(20vh - 60px);
+    padding-bottom: calc(20vh - 60px);
+    gap : 20px;
+}
+
+@font-face { 
+    font-family: 'Optician Sans'; 
+    src: url("/static/fonts/Optician-Sans.otf") format("opentype"); 
+}
+
+@font-face { 
+    font-family: 'VT323'; 
+    src: url("/static/fonts/VT323-Regular.ttf") format("truetype"); 
+}
+
+.upper-left{
+    display: flex;  
+    font-family: 'Optician Sans', monospace;
+    flex-direction: column;
+    text-align: left;
+    justify-content: baseline;
+    /* line-height: 0.5; */
+    /* margin-top: 120px; */
+}
+
+.upper-left h1 {
+    line-height: 0.9;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+
+.PROTON, .P{
+    color: #00ff00;
+}
+.upper-mid {
+    display: none;
+    width: 35%;
+    position: absolute;
+    z-index: -2;
+    top: 80px;
+}
+
+.logo-bg {
+    width: 20%;
+    height: auto;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+
+.terminal {
+    font-family: 'Space mono', monospace;
+    background-color: #00000080;
+    height:60vh;
+    width: 25vw; 
+    min-width: 480px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: #00ff00 solid 1px;
+    overflow-x: hidden;
+}
+.terminal-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    border: #00ff00 solid 1px;
+    color: #00ff00;
+    padding-left: 16px;
+    padding-right: 4px;
+    font-size: 1rem;
+}
+
+.expand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    width: 24px;
+    background-color: #00ff00;
+    text-align: center;
+}
+
+.expand:hover{
+    font-size: large;
+    transition: 0.2s;
+}
+.terminal-header i{
+    color: #000000;
+}
+
+.magazine-promo {
+    text-align: center;
+    padding: 20px;
+    background-color: #00000080;
+    border-top: 1px solid #00ff00;
+    border-bottom: 1px solid #00ff00;
+}
+
+.magazine-promo h2 {
+    color: #00ff00;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.magazine-promo p {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.magazine-promo-link {
+    color: #000000;
+    background-color: #00ff00;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.magazine-promo-link:hover {
+    background-color: #ffffff;
+}
+
+#terminal-content {
+    margin-left: 10px;
+    font-family: 'Space mono', monospace;
+    font-size: 0.8rem;
+    padding: 10px;
+    line-height: 0.7;
+
+}
+
+.ascii-art {
+    padding-top: 10px;
+    margin-left: 10px;
+    font-family: monospace;
+    padding-left: -10px;
+    color: #00ff00;
+    font-size: 10px;
+    line-height: 1.2;
+}
+.command-line {
+    font-family: 'Poppins', monospace;
+    color: #67999a;
+    font-weight: bold;
+}
+.warning {
+    color: #ff0000;
+}
+
+.success {
+    color: #088044;
+}
+
+.upevents {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    padding: 10px;
+    padding-bottom: 160px;
+    /* margin-left: 100px;
+    margin-right: 100px; */
+}
+
+.upevents-title {
+    font-family: 'Optician Sans', monospace;
+    /* text-decoration: underline #00ff00; */
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+.upevents-content {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    background-color: #ffffff00;
+    color: #000;
+    border-radius: 5px;
+}
+
+.upevents-item {
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    height: 100%;
+    width: 300px; 
+}
+
+.upevents-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.opacity-75 {
+    opacity: 0.80;
+}
+
+.opacity-50 {
+    opacity: 0.70;
+}
+
+.opacity-25 {
+    opacity: 0.60;
+}
+
+
+.view-all {
+    font-family: 'Optician Sans', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.view-all button {
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 25px;
+    border: none;
+    background: none;
+    font-weight: 600;
+  }
+  
+.view-all button::before {
+    margin-left: auto;
+  }
+  
+.view-all button::after, button::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #00ff00;
+    display: block;
+    transition: 0.5s;
+  }
+  
+.view-all button:hover::after, button:hover::before {
+    width: 100%;
+  }
+
+.view-all button:hover {
+    color: #ffffff;
+}
+
+.upevents-item:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 880px) {
+    .terminal {
+        display: none;
+    }
+    .upper-left {
+        justify-content: center;
+        text-align: center;
+        
+        padding-top: 90px;
+        padding-bottom: 40px;
+    }
+    .logo-bg {
+        width: 20%;
+        height: auto;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        object-fit: contain;
+        margin: auto;
+    }
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 600px) {
+    .mobile {
+        display: none;
+        flex-direction: column;
+        margin-top: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo-bg {
+        width: 40%;
+        padding-bottom: 20px;
+    }
+
+    .upper-left {
+        padding-top: 10px;
+        font-size: large;
+    }
+
+    .upper-left h1{
+        font-size: xx-large;
+    }
+
+    .upevents h1{
+        font-size: x-large;
+    }
+
+    .upevents-content {
+        flex-direction: column; /* Stack content vertically on mobile */
+    }
+
+    .view-all button{
+        font-size: medium;
+    }
+
+    #info {
+        margin-top: 50px;
+        font-size: xx-small;
+    }
+
+
+    #command {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #211D1B;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #texter, #liner, .cursor {
+        font-family: 'Poppins', monospace;
+        width: 100%;
+        font-size: 16px;  /* Increased from 14px */
+        padding: 8px;
+    }
+
+    #liner {
+        font-size: 16px;  /* Increased from 14px */
+        padding: 8px 0;
+    }
+
+    .cursor {
+        font-size: 16px;  /* Increased from 14px */
+    }
+
+    /* Improve touch targets */
+    a {
+        padding: 8px 0;
+        display: inline-block;
+    }
+
+    /* Adjust command line spacing */
+    .command-line {
+        font-family: 'Poppins', monospace;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    /* Make help text and other content more readable */
+    .color2, .inherit, .command {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+}
+
+#liner::before {
+    content: attr(data-prompt);
+    color: #67999a;
+}
+
+/* Magazine Announcement Mini Terminal */
+.magazine-announcement {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.mini-terminal {
+    font-family: 'Space mono', monospace;
+    background-color: #00000080;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    border: #00ff00 solid 2px;
+    border-radius: 5px;
+    overflow: visible;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    }
+    to {
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.8), 0 0 35px rgba(0, 255, 0, 0.6);
+    }
+}
+
+.mini-terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    background-color: #00ff0020;
+    border-bottom: #00ff00 solid 1px;
+    color: #00ff00;
+    padding: 0 16px;
+    font-size: 0.9rem;
+}
+
+.blink {
+    width: 12px;
+    height: 12px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.mini-terminal-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.announcement-text {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-family: 'VT323', monospace;
+    letter-spacing: 1px;
+}
+
+.announcement-text .success {
+    color: #00ff00;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.magazine-link {
+    text-decoration: none;
+}
+
+.magazine-btn {
+    background-color: #00ff00;
+    color: #000000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-family: 'Optician Sans', monospace;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.magazine-btn:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+}
+
+.magazine-btn i {
+    transition: transform 0.3s ease;
+}
+
+.magazine-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* Mobile responsiveness for magazine announcement */
+@media (max-width: 768px) {
+    .magazine-announcement {
+        margin-bottom: 40px;
+    }
+
+    .mini-terminal {
+        max-width: 90%;
+    }
+
+    .announcement-text {
+        font-size: 1rem;
+    }
+
+    .magazine-btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-terminal-content {
+        padding: 15px;
+    }
+
+    .announcement-text {
+        font-size: 0.9rem;
+    }
+
+    .magazine-btn {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Popup styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}

@@ -1,0 +1,248 @@
+/* Magazine Detail Page Styles */
+.magazine-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #ffffff;
+    font-family: 'Optician Sans', monospace;
+}
+
+.magazine-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.magazine-title {
+    font-size: 3rem;
+    color: #00ff00;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.magazine-year {
+    font-size: 1.5rem;
+    color: #67999a;
+    margin-bottom: 20px;
+}
+
+.magazine-description {
+    font-size: 1.1rem;
+    color: #cccccc;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.magazine-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.magazine-viewer {
+    background-color: #00000080;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.magazine-iframe {
+    width: 100%;
+    height: 800px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.magazine-actions {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background-color: #00000080;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: 'Optician Sans', monospace;
+}
+
+.action-btn:hover {
+    background-color: #00ff00;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+}
+
+.action-btn i {
+    font-size: 1.3rem;
+}
+
+.download-count {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-left: auto;
+}
+
+.qr-section {
+    background-color: #00000080;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+}
+
+.qr-section h3 {
+    color: #00ff00;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.qr-hint {
+    color: #67999a;
+    font-size: 0.9rem;
+}
+
+.mobile-options {
+    background-color: #00000080;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 20px;
+}
+
+.mobile-options h3 {
+    color: #00ff00;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.option-card {
+    text-align: center;
+    padding: 30px;
+    background-color: #00000060;
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+    border-color: #00ff00;
+    background-color: #00000080;
+}
+
+.option-card i {
+    font-size: 3rem;
+    color: #00ff00;
+    margin-bottom: 15px;
+}
+
+.option-card h4 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.option-card p {
+    color: #67999a;
+    font-size: 0.95rem;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .qr-section {
+        display: none;
+    }
+    .magazine-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .magazine-title {
+        font-size: 2rem;
+    }
+
+    .magazine-year {
+        font-size: 1.2rem;
+    }
+
+    .magazine-iframe {
+        height: 600px;
+    }
+
+    .magazine-actions {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .action-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .option-card {
+        padding: 20px;
+    }
+
+    .option-card i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .magazine-title {
+        font-size: 1.5rem;
+    }
+
+    .magazine-iframe {
+        height: 500px;
+    }
+
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+}
+

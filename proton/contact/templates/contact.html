@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+   Contact Us - Cyber Security
+{% endblock title %}
+
+{% block styles %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #0a0f24;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.contact-title {
+  color: #00ff00;
+  text-align: center;
+  font-size: 30px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1a2b48;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+#send-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 35px;
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  background: #00ff00;
+  color: #000;
+  padding: 0.5em 1em;
+  padding-left: 0.7em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+#send-btn span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+  font-size: 16px;
+}
+
+#send-btn span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+#send-btn svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+#send-btn:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+#send-btn:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+#send-btn:hover span {
+  transform: translateX(15em);
+}
+
+#send-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+
+.contact-info {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.contact-info i {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.contact-info div {
+  margin-bottom: 10px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="contact-container">
+   <h1 class="contact-title">
+    Contact Us
+   </h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+
+        <button id="send-btn" type="submit">
+          <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path
+                  fill="currentColor"
+                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <span>Send</span>
+        </button>
+
+    </form>
+   </div>
+   <div class="contact-info">
+    <div><i class="fas fa-phone-alt"></i> +91 73490 16559 </div>
+    <div><i class="fas fa-envelope"></i> proton.cybsec@nmamit.in </div>
+    <div><i class="fas fa-map-marker-alt"></i> Dept. of Cyber Security, NMAMIT, Nitte, Udupi (Karnataka, India) </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const sendBtn = document.getElementById("send-btn");
+  sendBtn.addEventListener("click", () => {
+    sendBtn.innerHTML = "Sending...";
+    sendBtn.style.backgroundColor = "#00ff00";
+    sendBtn.style.color = "#000";
+  });
+</script>
+{% endblock scripts %}

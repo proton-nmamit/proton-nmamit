@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <title>proton</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/styles.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/fav-icon.png' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Noto+Mono&display=swap" rel="stylesheet">
+    {% csrf_token %}
+    <script>
+      // Pass Django user context to JavaScript
+      window.isAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
+      window.username = "{% if user.is_authenticated %}{{ user.username }}{% else %}user{% endif %}";
+    </script>
+  </head>
+  <body>
+    <div id="terminal">
+      <a id="before"></a>
+    </div>
+    <div id="command" onclick="$('texter').focus();">
+      <textarea
+        type="text"
+        id="texter"
+        onkeyup="typeIt(this)"
+        autofocus
+      ></textarea>
+      <div id="liner" data-prompt="user@proton:~$ ">
+        <span id="typer"></span><b class="cursor" id="cursor">█</b>
+      </div>
+    </div>
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'js/commands.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

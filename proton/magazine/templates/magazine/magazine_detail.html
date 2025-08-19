@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/magazine.css' %}" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block title %}
+{{ magazine.title }} | PROTON Magazine
+{% endblock %}
+
+{% block content %}
+<div class="magazine-container">
+    <div class="magazine-header">
+        <h1 class="magazine-title">{{ magazine.title }}</h1>
+        <p class="magazine-year">{{ magazine.year }}</p>
+        {% if magazine.description %}
+        <p class="magazine-description">{{ magazine.description }}</p>
+        {% endif %}
+    </div>
+
+    <div class="magazine-content">
+        <!-- Magazine Viewer -->
+        <div class="magazine-viewer">
+            <iframe 
+                src="{% if magazine.pdf_file %}{{ magazine.pdf_file.url }}{% else %}{{ magazine.drive_link }}{% endif %}" 
+                width="100%" 
+                height="600" 
+                frameborder="0"
+                allowfullscreen
+                class="magazine-iframe">
+            </iframe>
+        </div>
+
+        <!-- Action Buttons and QR Code -->
+        <div class="magazine-actions">
+            <div class="action-buttons">
+                <a href="{{ magazine.drive_link }}" target="_blank" class="action-btn download-btn" onclick="trackDownload('{{ magazine.pk }}')">
+                    <i class="fas fa-download"></i>
+                    <span>Download Magazine</span>
+                </a>
+                
+                <button class="action-btn share-btn" 
+                        data-share-url="{{ magazine.drive_link }}"
+                        onclick="shareMagazine(this)">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share</span>
+                </button>
+            </div>
+
+            <div class="qr-section">
+                <h3>Scan to Read on Mobile</h3>
+                <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code" class="qr-code">
+                <p class="qr-hint">Scan this QR code with your phone to access the magazine</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+alert("This magzine view is just for streaming, to view magzine in full quality, please click download button below.");
+function trackDownload(magazineId) {
+    fetch(`/magazine/download/${magazineId}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                document.querySelector('.download-count').textContent = `(${data.count} downloads)`;
+            }
+        });
+}
+
+function shareMagazine(button) {
+    const shareUrl = button.getAttribute('data-share-url');
+
+    if (!shareUrl) {
+        alert('No shareable link available for this magazine.');
+        return;
+    }
+
+    else {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            alert('Link copied to clipboard!');
+        }).catch(error => {
+            console.error('Error copying to clipboard:', error);
+            alert('Failed to copy link.');
+        });
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block styles %}
+<link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css"> 
+
+{% endblock %}
+
+{% block title %}
+Home | PROTON Home 
+{% endblock %}
+
+{% block content %}
+<!-- Magazine Popup -->
+<div id="magazine-popup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+        <div class="mini-terminal">
+            <div class="mini-terminal-header">
+                <div class="status">Magazine Alert</div>
+                <button class="close-btn" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="mini-terminal-content">
+                <p class="announcement-text">
+                    <span class="success">NEW!</span> Our magazine for year 2024-25 is out!
+                </p>
+                <a href="/magazine/" class="magazine-link">
+                    <button class="magazine-btn">
+                        Click here to read <i class="fas fa-arrow-right"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mobile">
+    <p id="info">btw our website looks better on desktops... 
+        <br>just saying...
+        
+    </p>
+</div>
+
+<div class="upper">
+
+    <div class="upper-left">
+        
+        <img src="{% static 'assets/logo.png' %}" alt="logo" class="logo-bg">
+        <h1>Welcome to <span class="PROTON">PROTON</span></h1>
+        <p><span class="P">Pr</span>oactive <span class="P">O</span>rganisation&nbsp;for <span class="P">T</span>hreats&nbsp;and <span class="P">O</span>nline <span class="P">N</span>etworks</p>
+    </div>
+    
+
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="status">Status</div>
+        <div class="expand">
+            <a href="/terminal"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
+        </div>
+    </div>
+    <div id="terminal-art">
+        <pre class="ascii-art">
+  ________  ________  ________  _________  ________  ________     
+ |\   __  \|\   __  \|\   __  \|\___   ___\\   __  \|\   ___  \  
+ \ \  \|\  \ \  \|\  \ \  \|\  \|___ \  \_\ \  \|\  \ \  \\ \  \  
+  \ \   ____\ \   _  _\ \  \\\  \   \ \  \ \ \  \\\  \ \  \\ \  \ 
+   \ \  \___|\ \  \\  \\ \  \\\  \   \ \  \ \ \  \\\  \ \  \\ \  \ 
+    \ \__\    \ \__\\ _\\ \_______\   \ \__\ \ \_______\ \__\\ \__\ 
+     \|__|     \|__|\|__|\|_______|    \|__|  \|_______|\|__| \|__| 
+        </pre>
+        <!-- <div class="magazine-promo">
+            <h2>Our Latest Magazine is Out!</h2>
+            <p>Check out the latest issue of PROTON Magazine for exciting articles, interviews, and more.</p>
+            <a href="{% url 'magazine:magazine_list' %}" class="magazine-promo-link">Read Now</a>
+        </div> -->
+        <div id="terminal-content">
+        <script>
+            // set up text to print, each item in array is new line
+            var aText = new Array(
+                   "<p>>> Initializing secure environment...</p>",
+                   "<p>>> Verifying credentials...</p>",
+                    
+                   "{% if user.is_authenticated %}",
+                   '<p>>> <span class="success">SUCCESS!</span> User authenticated.</p>',
+                   "<p>>> Current user: {{ user.username }}</p>",
+                   "{% else %}",
+                   '<p>>> <span class="warning">WARNING!</span> Unauthorized access detected.</p>',
+                   "<p>>> Current user: guest</p>",
+                   "{% endif %}",
+                    
+                   "<p>>> Environment status: SECURED ✓</p>",
+                   "<p>>> Ready for exploration!</p>",
+               );
+               var iSpeed = 0.1; // time delay of print out
+               var iIndex = 0; // start printing array at this posision
+               var iArrLength = aText[0].length; // the length of the text array
+               var iScrollAt = 20; // start scrolling up at this many lines
+                    
+               var iTextPos = 0; // initialise text position
+               var sContents = ''; // initialise contents variable
+               var iRow; // initialise current row
+                    
+               function typewriter()
+               {
+                sContents =  ' ';
+                iRow = Math.max(0, iIndex-iScrollAt);
+                var destination = document.getElementById("terminal-content");
+                
+                while ( iRow < iIndex ) {
+                 sContents += aText[iRow++];
+                }
+                destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "";
+                if ( iTextPos++ == iArrLength ) {
+                 iTextPos = 0;
+                 iIndex++;
+                 if ( iIndex != aText.length ) {
+                  iArrLength = aText[iIndex].length;
+                  setTimeout("typewriter()", 500);
+                 }
+                } else {
+                 setTimeout("typewriter()", iSpeed);
+                }
+               }
+               
+               
+               typewriter();
+        </script>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Magazine Announcement Mini Terminal -->
+<!-- Magazine Announcement Mini Terminal -->
+<div class="magazine-announcement">
+    <div class="mini-terminal">
+        <div class="mini-terminal-header">
+            <div class="status">Magazine Alert</div>
+            <div class="blink"></div>
+        </div>
+        <div class="mini-terminal-content">
+            <p class="announcement-text">
+                <span class="success">NEW!</span> Our magazine for year 2024-25 is out!
+            </p>
+            <a href="/magazine/" class="magazine-link">
+                <button class="magazine-btn">
+                    Click here to read <i class="fas fa-arrow-right"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="upevents">
+    <div class="upevents-title">
+        <h1>Our Events</h1>
+    </div>
+    <div class="upevents-content">
+        {% for event in events %}
+        <div class="upevents-item">
+            <img class="upevents-image {% if forloop.counter == 2 %}opacity-75{% elif forloop.counter == 3 %}opacity-50{% elif forloop.counter == 4 %}opacity-25{% endif %}" src="{{ event.image.url }}" alt="{{ event.name }}">
+        </div>
+        {% endfor %}
+        <div class="upevents-item view-all">
+            <a href="{% url 'events' %}">
+                <button class="view-all-button">
+                View All ->
+              </button>
+            </a>
+        </div>
+        {% comment %} <div class="upevents-item" id="upevents-item2"></div>
+        <div class="upevents-item" id="upevents-item3"></div>
+        <div class="upevents-item" id="upevents-item4">View All -></div> {% endcomment %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function showPopup() {
+        if (!sessionStorage.getItem('popupShown')) {
+            document.getElementById('magazine-popup').style.display = 'flex';
+            sessionStorage.setItem('popupShown', 'true');
+        }
+    }
+
+    function closePopup() {
+        document.getElementById('magazine-popup').style.display = 'none';
+    }
+
+    window.onload = showPopup;
+</script>
+{% endblock %}

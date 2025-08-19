@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+
+{% block styles %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap');
+
+    .event-detail-container {
+        padding: 20px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .event-detail-container h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .event-detail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .event-image {
+        flex: 1 1 400px;
+        max-width: 450px;
+    }
+
+    .event-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .event-info {
+        flex: 2 1 500px;
+        max-width: 600px;
+    }
+
+    .event-info p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .event-info p strong {
+        font-weight: 600;
+        color: #00ff00;
+    }
+
+    .event-actions {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .register-button {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .register-button:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+    }
+    
+    .closed-text {
+        color: #db4641;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 992px) {
+        .event-detail {
+            flex-direction: column;
+            align-items: center;
+        }
+        .event-info {
+            text-align: left;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .event-detail-container h1 {
+            font-size: 2.2rem;
+        }
+        .event-info p {
+            font-size: 1rem;
+        }
+    }
+</style>
+    
+{% endblock %}
+{% block content %}
+
+<div class="event-detail-container">
+    <h1>{{ evt.title }}</h1>
+    <div class="event-detail">
+        <div class="event-image">
+            <img src="{{ evt.image.url }}" alt="Event Image">
+        </div>
+        <div class="event-info">
+            <p><strong>Name:</strong> {{ evt.name }}</p>
+            <p><strong>Date:</strong> {{ evt.date }}</p>
+            <p><strong>Location:</strong> {{ evt.location }}</p>
+            <p><strong>Description:</strong> {{ evt.description }}</p>
+        </div>
+    </div>
+
+    {% load tz %}  {# Load timezone module #}
+
+    {% now "Y-m-d H:i" as current_time %}  {# Get current date and time #}
+    {% if evt.date|stringformat:"s" > current_time %}
+        <a href="{{ evt.registration_link }}" class="register-button">Register</a>
+    {% else %}
+        <span class="closed-text">Registration Closed</span>
+    {% endif %}
+</div>
+{% endblock %}

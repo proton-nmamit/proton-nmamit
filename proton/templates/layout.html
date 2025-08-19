@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+    {% block styles %}{% endblock %}
+    <title>
+        {% block title %}
+        Home | PROTON Layout
+        {% endblock %}
+    </title>
+</head>
+<body>
+<canvas id="matrixCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array.from({ length: columns }, () => Math.floor(Math.random() * canvas.height / fontSize));
+
+        const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const charArray = characters.split('');
+
+        let mouseX = -1;
+        let mouseY = -1;
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                const distance = Math.abs(mouseX - x) / fontSize;
+                const isHovered = distance <= 4;
+
+                if (i < 4) {
+                    ctx.fillStyle = 'rgba(0, 255, 0, 0.2)';
+                } else {
+                    ctx.fillStyle = isHovered ? 'rgb(0, 255, 0)' : 'rgba(0, 255, 0, 0.26)';
+                }
+
+                ctx.fillText(text, x, y);
+
+                if (Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouseX = -1;
+            mouseY = -1;
+        });
+    </script>
+
+
+    <header>
+        <nav class="navbar">
+            <div class="menu-icon" id="menu-icon">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="{% url 'home'%}">Home</a></li>
+                <li><a href="{% url 'about'%}">About</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'team'%}">Team</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <!-- <li><a href="{% url 'magazine:magazine_list' %}" class="highlight-magazine"><span></span><span></span><span></span><span></span>Magazine</a></li> -->
+                <li><a href="{% url 'terminal' %}">Playground</a></li>
+                <li><a href="{% url "contact" %}">Contact</a></li>
+                
+
+                {% comment %} <li class="faq-button"><i class="fa-solid fa-user-secret"></i>
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <span class="tooltip">Profile</span>
+                     <div class="faq-dropdown">
+                        <a href="{% url 'profile' %}">Profile</a>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div> 
+                    {% else %}
+                    <span class="tooltip">Login</span>
+                    {% endif %}
+                </li> {% endcomment %}
+                
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <li><a href="admin404">Admin</a>
+                    {% else %}
+                        <li><a href="/profile">Profile</a>
+                    {% endif %}
+                {% else %}
+                    <li><a href="/accounts/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main">
+            {% block content %}
+            {% endblock %}
+            <!-- Replace the existing footer section -->
+<footer>
+    <div class="footer">
+        <div class="row">
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        
+        <div class="row">
+        <ul>
+        <li><a href="{% url 'about' %}">About us</a></li>
+        <li><a href="{% url 'events' %}">Our Events</a></li>
+        <li><a href="{% url 'team' %}">Our Team</a></li>
+        <li><a href="{% url 'terminal' %}">Terminal</a></li>
+        <li><a href="{% url 'contact' %}">Contact us</a></li>
+        
+        </ul>
+        </div>
+        
+        <div class="row" id="copy">
+        PROTON Copyright © 2025 PROTON - All rights reserved 
+        </div>
+        </div>
+</footer>
+        </div>
+    </div>
+
+
+    <script>
+    const menuIcon = document.getElementById("menu-icon");
+    const navLinks = document.getElementById("nav-links");
+    let isMenuOpen = false;
+
+    menuIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isMenuOpen = !isMenuOpen;
+        menuIcon.classList.toggle("active");
+        navLinks.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (isMenuOpen && !menuIcon.contains(e.target) && !navLinks.contains(e.target)) {
+            menuIcon.classList.remove("active");
+            navLinks.classList.remove("active");
+            isMenuOpen = false;
+        }
+    });
+
+    // Prevent menu from closing when clicking inside nav-links
+    navLinks.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            menuIcon.classList.remove("active");
+            navLinks.classList.remove("active");
+            isMenuOpen = false;
+        });
+    });
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

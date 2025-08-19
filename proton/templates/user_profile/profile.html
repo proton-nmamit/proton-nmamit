@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+</head>
+<body>
+    
+    <h1>Profile Edit</h1>
+
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <form method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% comment %} {% if user.is_authenticated %}
+    <script>
+        const list = document.querySelectorAll('input');
+        list[1].value = "{{ profile.name }}";
+        list[2].value = "{{ profile.email }}";
+        list[3].value = "{{ profile.phone }}";
+        list[4].value = "{{ profile.role }}";
+        list[6].value = "{{ profile.linkedin }}";
+        list[7].value = "{{ profile.github }}";
+        list[8].value = "{{ profile.instagram }}";
+
+    </script> 
+    {% endif %}{% endcomment %}
+
+    <br>
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+    </form>
+
+    <br>
+
+    <button><a href="{% url 'home'%}">Home</a></button>
+</body>
+</html>

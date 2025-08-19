@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/magazine.css' %}" type="text/css">
+{% endblock %}
+
+{% block title %}
+No Magazine Available | PROTON
+{% endblock %}
+
+{% block content %}
+<div class="magazine-container">
+    <div class="no-magazine">
+        <div class="terminal-style-box">
+            <div class="terminal-header">
+                <div class="status">Magazine Status</div>
+            </div>
+            <div class="terminal-content">
+                <p class="error-message">
+                    <span class="warning">ERROR 404:</span> No magazine currently available
+                </p>
+                <p class="info-message">
+                    Please check back later or contact the PROTON team for more information.
+                </p>
+                <a href="/" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.no-magazine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.terminal-style-box {
+    background-color: #00000080;
+    border: 2px solid #ff0000;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.terminal-header {
+    background-color: #ff000020;
+    border-bottom: 2px solid #ff0000;
+    padding: 15px 20px;
+    color: #ff0000;
+    font-family: 'Space mono', monospace;
+}
+
+.terminal-content {
+    padding: 40px;
+    text-align: center;
+}
+
+.error-message {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-family: 'VT323', monospace;
+}
+
+.warning {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.info-message {
+    color: #67999a;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background-color: #00000080;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Optician Sans', monospace;
+}
+
+.back-btn:hover {
+    background-color: #00ff00;
+    color: #000000;
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}

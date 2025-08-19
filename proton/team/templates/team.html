@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+
+Team | PROTON Layout
+
+{% endblock %}
+
+{% block styles %}
+<style>
+
+    @font-face {
+        font-family: 'Optician Sans', 'VT323';
+        src: url("/static/fonts/Optician-Sans.otf");
+        src: url("/static/fonts/VT323.ttf");
+    }
+    .team-section {
+        font-family: 'Optician Sans', sans-serif;
+        font-size: 0.5em;
+        margin-top: 60px;
+    }
+    .team-section h2 {
+        font-size: 2em;
+        color: #00ff00;
+        text-align: center;
+    }
+    .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 40px;
+    }
+    .team-member {
+        font-family: 'Play', sans-serif;
+        flex: 1 1 30%;
+        text-align: center;
+        margin: 20px;
+    }
+    .team-member img {
+        border-radius: 2%;
+        width: 18rem;
+        height: 18rem;
+        object-fit: cover;
+        
+    }
+    .team-member h3 {
+        font-size: 1.5em;
+        color: #00ff00;
+        margin: 10px 0 5px;
+    }
+    .team-member p {
+        font-size: 1em;
+        color: #cccccc;
+    }
+
+    .social a{
+        padding: 5px;
+        font-size: 1.5em;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="team-section">
+    <h2>
+     This is Us!!!
+    </h2>
+    <div class="year-selector" style="text-align: center; margin-bottom: 20px;">
+        {% for y in years %}
+            {% if y == selected_year %}
+            <a href="{% url 'team_by_year' y %}" style="color: #00ff00; margin: 0 10px; text-decoration: none;">Team @{{ y }}</a>
+            {% else %}
+            <a href="{% url 'team_by_year' y %}" style="color: #cccccc; margin: 0 10px; text-decoration: none;">Team @{{ y }}</a>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    <div class="team-members">
+        {% for member in members %}
+        <div class="team-member">
+            {% if member.image %}
+                <img alt="photo" height="200" src="{{ member.image.url }}" width="200"/>
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.role }}</p>
+                <div class="social">
+                    <a href="{{ member.linkedin }}"><i class="fa fa-linkedin"></i></a>
+                    <a href="{{ member.github }}"><i class="fa fa-github"></i></a>
+                    <a href="{{ member.instagram }}"><i class="fa fa-instagram"></i></a>
+                </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
