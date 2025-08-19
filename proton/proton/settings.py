@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'events', #events app
     'gallery', #gallery app
     'magazine', #magazine app
+    'analytics', #analytics app
 ]
 
 
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'livereload.middleware.LiveReloadScript',
     'django_user_agents.middleware.UserAgentMiddleware',
+    'analytics.middleware.UserEventMiddleware',
 ]
 
 ROOT_URLCONF = 'proton.urls'
