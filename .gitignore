@@ -135,7 +135,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments and secrets
-settings.py
+# settings.py
 .env
 .env
 .envrc

@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
+load_dotenv()
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -124,7 +126,8 @@ DATABASES = {
         "PORT": "5432",
         "OPTIONS": {
             "sslmode": "require",
-            "sslrootcert": "/path/to/root.crt",  # Path to your root certificate
+            "sslrootcert": "/path/to/root.crt",
+            "connect_timeout": 5,  # Path to your root certificate
         },
     }
 }
