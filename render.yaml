@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: proton-nmamit
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn proton.wsgi:application --bind 0.0.0.0:10000"

@@ -28,11 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = ['proton-nmamit.azurewebsites.net', '127.0.0.1', 'localhost', '.onrender.com']
+ALLOWED_HOSTS = ['proton-nmamit.azurewebsites.net', '127.0.0.1', 'localhost', '.onrender.com', 'protonnmamit.com']
 
 #, 'proton-nmamit.onrender.com', 'protonnmamit.pythonanywhere.com'
 
