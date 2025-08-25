@@ -1,19 +1,35 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import member
+from .models import member, TeamDisplaySetting
 
 # Create your views here.
 def team(request, year=None):
+    try:
+        setting = TeamDisplaySetting.objects.first()
+        latest_year = member.objects.order_by('-year').values_list('year', flat=True).first()
+        if setting and not setting.show_2025_members:
+            years = member.objects.exclude(year=latest_year).values_list('year', flat=True).distinct().order_by('-year')
+        else:
+            years = member.objects.values_list('year', flat=True).distinct().order_by('-year')
+    except TeamDisplaySetting.DoesNotExist:
+        years = member.objects.values_list('year', flat=True).distinct().order_by('-year')
+
     if year is None:
         latest_member = member.objects.order_by('-year').first()
         if latest_member:
             year = latest_member.year
         else:
             year = 2024
-
-    years = member.objects.values_list('year', flat=True).distinct().order_by('-year')
     
-    members = member.objects.filter(year=year).order_by('position')
+    try:
+        setting = TeamDisplaySetting.objects.first()
+        latest_year = member.objects.order_by('-year').values_list('year', flat=True).first()
+        if setting and not setting.show_2025_members:
+            members = member.objects.filter(year=year).exclude(year=latest_year).order_by('position')
+        else:
+            members = member.objects.filter(year=year).order_by('position')
+    except TeamDisplaySetting.DoesNotExist:
+        members = member.objects.filter(year=year).order_by('position')
     
     context = {
         'members': members,

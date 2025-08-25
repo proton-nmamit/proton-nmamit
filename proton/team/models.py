@@ -64,3 +64,9 @@ class member(models.Model):
 
     def __str__(self):
         return self.name
+
+class TeamDisplaySetting(models.Model):
+    show_2025_members = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "Team Display Settings"

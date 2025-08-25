@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from events.models import Event  # Import the Event model
-from team.models import member  # Import the Team model
+from team.models import member, TeamDisplaySetting  # Import the Team model
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth import authenticate, login as auth_login
@@ -68,7 +68,15 @@ def register(request):
 
 def about(request):
     # Render the about.html template
-    members = member.objects.all().order_by('position')[:6]
+    try:
+        setting = TeamDisplaySetting.objects.first()
+        latest_year = member.objects.order_by('-year').values_list('year', flat=True).first()
+        if setting and not setting.show_2025_members:
+            members = member.objects.exclude(year=latest_year).order_by('position')[:6]
+        else:
+            members = member.objects.all().order_by('position')[:6]
+    except TeamDisplaySetting.DoesNotExist:
+        members = member.objects.all().order_by('position')[:6]
     return render(request, 'about.html', {'members': members})
 
 @ensure_csrf_cookie
