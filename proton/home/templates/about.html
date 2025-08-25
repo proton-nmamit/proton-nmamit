@@ -141,7 +141,9 @@ About PROTON
     <div class="team-members">
         {% for member in members %}
             <div class="team-member">
+            {% if member.image and member.image.url %}
              <img alt="photo" height="150" src="{{member.image.url}}" width="150"/>
+            {% endif %}
              <h3>
                 {{ member.name }}
              </h3>
