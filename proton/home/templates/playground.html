@@ -1,0 +1,96 @@
+    {% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+Playground
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
+<style>
+    .upper {
+        padding-top: calc(10vh - 60px);
+        padding-left: 50px;
+        padding-bottom: 2rem;
+    }
+    .upper-left .logo-bg {
+        width: 15%; /* Smaller logo */
+    }
+    .upper-left h1 {
+        font-size: 2.5rem; /* Smaller heading */
+    }
+    .upper-left p {
+        font-size: 1.5rem; /* Smaller paragraph */
+    }
+    .playground-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+    /* .playground-container .mini-terminal {
+        max-width: 350px;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    } */
+    .mini-terminal-header {
+        height: auto;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .status {
+        font-size: 1.2rem;
+        height: max-content;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="upper">
+    <div class="upper-left">
+        <img src="{% static 'assets/logo.png' %}" alt="logo" class="logo-bg">
+        <h1>Welcome to the <span class="PROTON">Playground</span></h1>
+        <p>Choose your adventure</p>
+    </div>
+</div>
+
+<div class="playground-container">
+    <div class="mini-terminal">
+        <div class="mini-terminal-header">
+            <div class="status">Terminal</div>
+            <div class="blink"></div>
+        </div>
+        <div class="mini-terminal-content">
+            <p class="announcement-text">
+                Engage with our custom-built terminal. Use various commands to navigate and interact with the site in a developer-like environment.
+            </p>
+            <a href="/" class="magazine-link">
+                <button class="magazine-btn">
+                    Go to Terminal <i class="fas fa-arrow-right"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="mini-terminal">
+        <div class="mini-terminal-header">
+            <div class="status">Play CTF</div>
+            <div class="blink"></div>
+        </div>
+        <div class="mini-terminal-content">
+            <p class="announcement-text">
+                Participate in our Capture The Flag (CTF) competitions. Sharpen your cybersecurity skills by solving challenges and competing with others.
+            </p>
+            <a href="http://ctf.protonnmamit.com" class="magazine-link" target="_blank">
+                <button class="magazine-btn">
+                    Play CTF <i class="fas fa-arrow-right"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -126,3 +126,6 @@ def terminal_login(request):
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
+
+def playground(request):
+    return render(request, 'playground.html')

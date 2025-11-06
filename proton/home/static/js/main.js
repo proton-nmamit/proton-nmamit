@@ -224,6 +224,10 @@ function commander(cmd) {
       addLine("Opening GUI-INTERFACE...", "color2", 0);
       newTab(GUI);
       break;
+    case "ctf":
+      addLine("Redirecting to CTF website...", "color2", 0);
+      newTab("http://ctf.protonnmamit.com");
+      break;
     case "logout":
       fetch('/accounts/logout/', {
         method: 'POST',

@@ -27,7 +27,7 @@ urlpatterns = [
     path("register/", register, name="register"), 
     path("about/", views.about, name="about"),
     path('terminal_login/', views.terminal_login, name='terminal_login'),  # Updated path
-    
+    path('playground/', views.playground, name='playground'),
 ]
 
 handler404 = custom_404_view
