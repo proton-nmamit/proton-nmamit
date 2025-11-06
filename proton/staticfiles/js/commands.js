@@ -55,7 +55,6 @@ help = [
   '<span class="command">contact</span>       Displays official email (don’t contact us we don’t actually care about you)', // Command description
   '<span class="command">clear</span>         Clear terminal', // Command description
   '<span class="command">gui</span>           Takes you to the graphical interface of the website (normal website);)', // Command description
-  '<span class="command">ctf</span>           Redirects to the CTF website',
   '<span class="command">get</span>           <span class="color2">Get member info (e.g., get john)</span>',
   "<br>",
 ];
@@ -85,6 +84,7 @@ home = [
   '<span class="color2">Just type help homie u can do it.</span>',
   '<span class="color2">If you are using a mobile phone kindly tilt it to land scape mode.</span>', // Instruction for GUI access
   '<span class="system">Type "help" to see available commands</span>',
+  '<span class="system">Type Our CTF Platform is Live!!! Just type "ctf" And check it out!</span>',
 ];
 
 function typeIt(e, event) {

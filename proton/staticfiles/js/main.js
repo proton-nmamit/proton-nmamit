@@ -173,7 +173,6 @@ function commander(cmd) {
     case "gas":
       loopLines(rishi, "color2 margin", 80);
       break;
-
     case "members":
       addLine("Fetching members list...", "system", 0);
       fetch('/team/terminal-members/')
@@ -187,10 +186,9 @@ function commander(cmd) {
           addLine("=====================", "color2", 80 * (data.members.length + 1));
         })
         .catch(error => {
-          addLine(error, "Error fetching members list", 0);
+          addLine("Error fetching members list", "error", 0);
         });
       break;
-
     case "socialmedia":
       loopLines(socialmedia, "color2 margin", 80);
       break;
@@ -225,6 +223,10 @@ function commander(cmd) {
     case "gui":
       addLine("Opening GUI-INTERFACE...", "color2", 0);
       newTab(GUI);
+      break;
+    case "ctf":
+      addLine("Redirecting to CTF website...", "color2", 0);
+      newTab("http://ctf.protonnmamit.com");
       break;
     case "logout":
       fetch('/accounts/logout/', {

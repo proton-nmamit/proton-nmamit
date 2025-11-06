@@ -84,6 +84,7 @@ home = [
   '<span class="color2">Just type help homie u can do it.</span>',
   '<span class="color2">If you are using a mobile phone kindly tilt it to land scape mode.</span>', // Instruction for GUI access
   '<span class="system">Type "help" to see available commands</span>',
+  '<span class="system">Type Our CTF Platform is Live!!! Just type "ctf" And check it out!</span>',
 ];
 
 function typeIt(e, event) {
